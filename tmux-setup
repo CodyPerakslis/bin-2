@@ -1,0 +1,36 @@
+#!/bin/bash
+set -e
+
+sessions=(
+	org
+)
+
+org() {
+	SESSION_NAME="${FUNCNAME[0]}"
+	tmux new-session -d -s $SESSION_NAME -n "base"
+	
+	tmux new-window -t $SESSION_NAME:1 -n "org"
+	tmux send-keys -t $SESSION_NAME:1 "cd data/org && nvim daily/$(date -I).md" C-m
+
+	tmux select-window -t $SESSION_NAME:1
+}
+
+setup_session() {
+	
+	if tmux has-session -t $1 2>/dev/null; then
+		tmux attach-session -t $1
+		return 0
+	fi
+
+	for session in "${sessions[@]}"; do
+		if [[ "$session" == "$1" ]]; then
+			$session
+			tmux attach-session -t $session
+			return 0
+		fi
+	done
+
+	echo "No such session found. Try: ${sessions[@]}"
+}
+
+setup_session $1
