@@ -2,7 +2,7 @@
 My local bin
 
 ## Scripts
-|---|---|---|
 | name | description | dependencies |
+|---|---|---|
 | timer | Sets a timer with the given amount of time and name | termdown, soundfile |
 | random-timer | Sets a timer for a d20 plus given modifier amount of minutes | timer |
