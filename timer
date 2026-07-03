@@ -2,9 +2,11 @@
 set -e
 
 ALARM_SOUND="/usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga"
+# https://pixabay.com/sound-effects/musical-happy-ukulele-478610/ 
 FUN_SOUND="$HOME/Music/waveloom-happy-ukulele-478610.mp3"
 
 function timer () {
+	# https://github.com/trehn/termdown
     termdown --blink --quit-after 3 --title "$2" "$1" 
 
     if [ -n "$2" ]; then

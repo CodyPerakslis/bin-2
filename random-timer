@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Rolls a d20 plus a given modifier
+# That is the number of minutes used in the timer
 function random_timer () {
     local random_time=$(( ( RANDOM % 20 )  + 1 + $1))m
     echo "Random timer set for $random_time"
