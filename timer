@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+ALARM_SOUND="/usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga"
+FUN_SOUND="$HOME/Music/waveloom-happy-ukulele-478610.mp3"
+
+function timer () {
+    termdown --blink --quit-after 3 --title "$2" "$1" 
+
+    if [ -n "$2" ]; then
+        echo "'$2' done!"
+    else
+        echo "Timer done!"
+    fi
+
+
+    while true
+    do
+        gst-play-1.0 "$FUN_SOUND" > /dev/null
+    done
+}
+
+
+timer "$1" "$2"
